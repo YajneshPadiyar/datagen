@@ -9,8 +9,8 @@ export async function parseAvroSchema(schemaFile: any) {
     });
 
     if (global.debug) {
-        const parsed = avro.parse(schemaFile);
-        console.log(parsed);
+        const avroSchema = avro.parse(schemaFile);
+        console.log(avroSchema);
     }
 
     let schema = [];
@@ -23,9 +23,9 @@ export async function parseAvroSchema(schemaFile: any) {
 }
 
 
-async function convertAvroSchemaToJson(schema: any): Promise<any> {
+async function convertAvroSchemaToJson(schemas: any): Promise<any> {
     const jsonSchema = [];
-    schema.forEach(table => {
+    schemas.forEach(table => {
         const schema = {
             _meta: {
                 topic: table.name
